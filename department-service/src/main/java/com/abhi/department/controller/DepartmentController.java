@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abhi.department.entity.Department;
 import com.abhi.department.service.DepartmentService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
 @RequestMapping("/departments")
 @Slf4j
