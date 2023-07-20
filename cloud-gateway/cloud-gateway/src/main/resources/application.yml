@@ -1,0 +1,69 @@
+server:
+  port: 9191
+  
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: EMPLOYEE-SERVICE
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/employee/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: EMPLOYEE-SERVICE
+#                fallbackuri: forward:/employeeServiceFallBack
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: DEPARTMENT-SERVICE
+#                fallbackuri: forward:/departmentServiceFallBack
+
+                
+#hystrix:
+#  command:
+#    fallbackcmd:
+#    execution:
+#      isolation:
+#        thread:
+#          timeoutInMilliseconds: 4000
+
+
+#management:
+#  health:
+#    circuitbreakers:
+#      enabled: true 
+#
+#
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health
+#        
+#  endpoint:
+#   health:
+#     show-details: always
+#     
+#     
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      employeeBreaker:
+#        registerHealthIndicator: true
+#        eventConsumerBufferSize: 10
+#        failureRateThreshold: 50
+#        minimumNumberOfCalls: 5
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        waitDurationInOpenState: 5s
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowSize: 10
+#        slidingWindowType: COUNT_BASED
+        
+     
